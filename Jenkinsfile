@@ -31,7 +31,10 @@ pipeline {
                     sh """
                     #!/bin/bash
                     ssh -i "$SSH_CRED" -o StrictHostKeyChecking=no ubuntu@ec2-18-222-116-38.us-east-2.compute.amazonaws.com << EOF
-                    pwd
+                    git clone https://github.com/voloruntoba/project-webshop.git
+                    cd project-webshop
+                    git checkout adservice
+                    kubectl apply -f adservice.yaml
                     exit
                     EOF
                     """
